@@ -1,0 +1,13 @@
+namespace greeter;
+
+table GreetRequest {
+    greeting:string;
+}
+
+table GreetResponse {
+    ack:string;
+}
+
+rpc_service Greeter {
+    Greet(GreetRequest):GreetResponse;
+}
