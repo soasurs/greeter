@@ -1,12 +1,17 @@
 package main
 
 import (
-	"hello/greeter"
+	"greeter/greeter"
 	"net"
 
 	flatbuffers "github.com/google/flatbuffers/go"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/encoding"
 )
+
+func init() {
+	encoding.RegisterCodec(flatbuffers.FlatbuffersCodec{})
+}
 
 func main() {
 	listen, err := net.Listen("tcp", ":3000")
@@ -14,7 +19,7 @@ func main() {
 		panic(err)
 	}
 
-	s := grpc.NewServer(grpc.CustomCodec(flatbuffers.FlatbuffersCodec{}))
+	s := grpc.NewServer()
 	greeter.RegisterGreeterServer(s, greeter.NewGreeterServer())
 	s.Serve(listen)
 }

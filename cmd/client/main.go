@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"hello/greeter"
+	"greeter/greeter"
 
 	flatbuffers "github.com/google/flatbuffers/go"
 	"google.golang.org/grpc"
